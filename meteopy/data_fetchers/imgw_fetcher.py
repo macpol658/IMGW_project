@@ -22,6 +22,8 @@ class IMGWDataFetcher:
         self.unzip = unzip
         self.data_dir = Path(__file__).resolve().parent.parent / "data" / "downloaded"
 
+        self.data_dir.mkdir(parents=True, exist_ok=True)
+
         self.download_all()
 
     def fetch(self, base_url: str = None) -> list:
@@ -64,6 +66,7 @@ class IMGWDataFetcher:
 
     def download_file(self, url: str) -> None:
         filename = self.data_dir / url.split("/")[-1]
+        self.data_dir.mkdir(parents=True, exist_ok=True)
         urlretrieve(url, filename)
 
         if self.unzip:

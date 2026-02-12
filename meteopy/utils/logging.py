@@ -13,6 +13,8 @@ def get_logger(
     logger = logging.getLogger(name)
     logger.setLevel(log_level)
 
+    log_file.parent.mkdir(parents=True, exist_ok=True)
+
     if not logger.handlers:
         formatter = logging.Formatter(
             fmt="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
